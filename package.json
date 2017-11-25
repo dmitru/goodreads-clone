@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  },
+  "name": "react-workshop-goodreads-clone",
+  "description":
+    "A demo project for a React workshop - a clone of Bookreads, built from scratch during the workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmitru/react-workshop-goodreads-clone.git"
+  },
+  "author": "dmitriy.borodiy@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmitru/react-workshop-goodreads-clone/issues"
+  },
+  "homepage": "https://github.com/dmitru/react-workshop-goodreads-clone#readme"
+}
