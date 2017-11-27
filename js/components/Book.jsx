@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { BookShape } from '../shapes';
 import getRandomColor from '../util/getRandomColor';
 
 export default function Book({ title, description, titleColor }) {
@@ -21,11 +21,7 @@ export default function Book({ title, description, titleColor }) {
   );
 }
 
-Book.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  titleColor: PropTypes.string,
-};
+Book.propTypes = BookShape;
 
 Book.defaultProps = {
   description: null,
