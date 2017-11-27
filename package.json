@@ -3,7 +3,8 @@
     "format": "prettier --write --single-quote --print-width=120 \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "name": "react-workshop-goodreads-clone",
   "description": "A demo project for a React workshop - a clone of Bookreads, built from scratch during the workshop",
