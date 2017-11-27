@@ -23,6 +23,7 @@
   "dependencies": {
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },

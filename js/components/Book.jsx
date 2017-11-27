@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import getRandomColor from '../util/getRandomColor';
 
 export default function Book({ title, description, titleColor }) {
@@ -19,3 +20,14 @@ export default function Book({ title, description, titleColor }) {
     </div>
   );
 }
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  titleColor: PropTypes.string,
+};
+
+Book.defaultProps = {
+  description: null,
+  titleColor: null,
+};
