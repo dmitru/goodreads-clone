@@ -12,10 +12,10 @@ export default function Book({ title, description, titleColor }) {
     padding: '0.5rem',
   };
 
-  return React.createElement(
-    'div',
-    { style: bookWrapperStyle },
-    React.createElement('h2', { style: titleStyle }, title),
-    React.createElement('p', null, description)
+  return (
+    <div style={bookWrapperStyle}>
+      <h2 style={titleStyle}>{title}</h2>
+      <p>{description}</p>
+    </div>
   );
 }
