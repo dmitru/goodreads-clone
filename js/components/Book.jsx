@@ -15,7 +15,7 @@ export default function Book({ title, description, titleColor }) {
   return (
     <div style={bookWrapperStyle}>
       <h2 style={titleStyle}>{title}</h2>
-      <p>{description}</p>
+      {description ? <p>{description}</p> : <em>No description :(</em>}
     </div>
   );
 }

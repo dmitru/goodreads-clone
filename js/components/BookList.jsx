@@ -2,13 +2,29 @@ import React from 'react';
 
 import Book from './Book';
 
+const bookData = [
+  {
+    id: 1,
+    title: 'Lord of the Buffer Rings',
+    description: 'A handy book indeed',
+  },
+  {
+    id: 2,
+    title: 'Harry Potter and the Virtual DOM',
+  },
+  {
+    id: 3,
+    title: '30 Days without jQuery',
+    description: 'Exactly what you need',
+  },
+  {
+    id: 4,
+    title: '7 Habits of Highly Effective Procrastinators',
+  },
+];
+
 export default function BookList() {
   return (
-    <div>
-      <Book title="Lord of the Buffer Rings" titleColor="pink" />
-      <Book title="Harry Potter and the Virtual DOM" description="A handy book indeed!" />
-      <Book title="30 Days without jQuery" />
-      <Book title="7 Habits of Highly Effective Procrastinators" />
-    </div>
+    <div>{bookData.map(({ id, title, description }) => <Book description={description} key={id} title={title} />)}</div>
   );
 }
