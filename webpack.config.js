@@ -4,15 +4,16 @@ const path = require('path');
 module.exports = {
   context: __dirname,
   entry: [
-    './js/index.jsx',
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
+    './js/index.jsx',
   ],
   devtool: 'cheap-eval-source-map',
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
+    publicPath: '/public/',
   },
   devServer: {
     hot: true,

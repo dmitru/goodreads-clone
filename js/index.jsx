@@ -3,4 +3,13 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const renderApp = () => {
+  ReactDOM.render(<App />, document.getElementById('app'));
+};
+renderApp();
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    renderApp();
+  });
+}
