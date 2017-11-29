@@ -1,11 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 import { BookListShape } from '../shapes';
 
 import Book from './Book';
 
+const BookListContainer = styled.div`
+  ${() => ''} display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
 export default function BookList({ books }) {
   return (
-    <div>{books.map(({ id, title, description }) => <Book description={description} key={id} title={title} />)}</div>
+    <BookListContainer>
+      {books.map(({ id, title, description, cover }) => (
+        <Book description={description} key={id} title={title} cover={cover} />
+      ))}
+    </BookListContainer>
   );
 }
 
