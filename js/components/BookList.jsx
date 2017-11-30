@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BookListShape } from '../shapes';
 
-import Book from './Book';
+import BookThumbnail from './BookThumbnail';
 
 const BookListContainer = styled.div`
   ${() => ''} display: flex;
@@ -13,13 +13,7 @@ const BookListContainer = styled.div`
 `;
 
 export default function BookList({ books }) {
-  return (
-    <BookListContainer>
-      {books.map(({ id, title, description, cover }) => (
-        <Book description={description} key={id} title={title} cover={cover} />
-      ))}
-    </BookListContainer>
-  );
+  return <BookListContainer>{books.map(book => <BookThumbnail key={book.id} book={book} />)}</BookListContainer>;
 }
 
 BookList.propTypes = {

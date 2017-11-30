@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { BookShape } from '../shapes';
 
@@ -13,10 +14,16 @@ const BookWrapper = styled.div`
   padding: 0.5rem;
 `;
 
-const BookTitle = styled.h2`
+const BookTitleLink = styled(Link)`
   font-weight: normal;
   font-size: 1.4rem;
   color: ${props => props.color || 'black'};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 `;
 
 const Button = styled.button`
@@ -28,7 +35,7 @@ const BookCover = styled.img`
   width: 100%;
 `;
 
-export default class Book extends React.Component {
+export default class BookThumbnail extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,29 +53,26 @@ export default class Book extends React.Component {
   }
 
   render() {
-    const { title, description, cover, titleColor } = this.props;
+    const { id, title, description, cover, titleColor } = this.props.book;
 
     return (
       <BookWrapper>
         <BookCover src={cover} alt={title} />
-        <BookTitle color={titleColor}>
+        <BookTitleLink color={titleColor} to={`/books/${id}`}>
           {this.state.isFavorite ? '★' : '☆'} {title}
-        </BookTitle>
+        </BookTitleLink>
+        <p>{description || <em>No description :(</em>}</p>
+
         <div>
           <Button onClick={this.handleToggleFavorite}>
             {this.state.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           </Button>
         </div>
-        <p>{description || <em>No description :(</em>}</p>
       </BookWrapper>
     );
   }
 }
 
-Book.propTypes = BookShape;
-
-Book.defaultProps = {
-  description: null,
-  titleColor: null,
-  cover: 'http://placehold.it/313x475',
+BookThumbnail.propTypes = {
+  book: BookShape.isRequired,
 };
