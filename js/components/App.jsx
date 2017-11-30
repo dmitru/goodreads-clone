@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { HashRouter, Route, Link } from 'react-router-dom';
 
 import BookList from './BookList';
+import LandingPage from './LandingPage';
 
 const books = [
   {
@@ -41,25 +43,34 @@ const AppHeaderWrapper = styled.div`
   padding-left: 2.5rem;
 `;
 
-const AppTitle = styled.h1`
+const AppTitleLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: normal;
   margin: 0;
+  text-decoration: none;
+  color: black;
 `;
+
+const AppWrapper = styled.div``;
 
 const AppHeader = () => {
   return (
     <AppHeaderWrapper>
-      <AppTitle>BestReads</AppTitle>
+      <AppTitleLink to="/">BestReads</AppTitleLink>
     </AppHeaderWrapper>
   );
 };
 
 export default function App() {
-  return [
-    <AppHeader key="app-header" />,
-    <AppContainer key="app-container">
-      <BookList books={books} />
-    </AppContainer>,
-  ];
+  return (
+    <HashRouter>
+      <AppWrapper>
+        <AppHeader />
+        <AppContainer>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/books" component={() => <BookList books={books} />} />
+        </AppContainer>
+      </AppWrapper>
+    </HashRouter>
+  );
 }
