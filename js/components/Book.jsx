@@ -19,18 +19,50 @@ const BookTitle = styled.h2`
   color: ${props => props.color || 'black'};
 `;
 
+const Button = styled.button`
+  padding: 0.5rem;
+  background: white;
+`;
+
 const BookCover = styled.img`
   width: 100%;
 `;
 
-export default function Book({ title, description, cover, titleColor }) {
-  return (
-    <BookWrapper>
-      <BookCover src={cover} alt={title} />
-      <BookTitle color={titleColor}>{title}</BookTitle>
-      {description ? <p>{description}</p> : <em>No description :(</em>}
-    </BookWrapper>
-  );
+export default class Book extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isFavorite: false,
+    };
+
+    this.handleToggleFavorite = this.handleToggleFavorite.bind(this);
+  }
+
+  handleToggleFavorite() {
+    this.setState({
+      isFavorite: !this.state.isFavorite,
+    });
+  }
+
+  render() {
+    const { title, description, cover, titleColor } = this.props;
+
+    return (
+      <BookWrapper>
+        <BookCover src={cover} alt={title} />
+        <BookTitle color={titleColor}>
+          {this.state.isFavorite ? '★' : '☆'} {title}
+        </BookTitle>
+        <div>
+          <Button onClick={this.handleToggleFavorite}>
+            {this.state.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          </Button>
+        </div>
+        <p>{description || <em>No description :(</em>}</p>
+      </BookWrapper>
+    );
+  }
 }
 
 Book.propTypes = BookShape;
