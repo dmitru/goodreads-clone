@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 export function getBooks() {
   const BOOKS = [
     {
@@ -31,5 +30,19 @@ export function getBooks() {
 
   return new Promise(resolve => {
     setTimeout(() => resolve(BOOKS_MOCKED_RESPONSE), 1000);
+  });
+}
+
+export function getBookReviews(bookId) {
+  const REVIEW_TEXT_OPTIONS = ['Awesome!', 'The best thing happenned to me...', 'Below average!', 'Life-changing'];
+
+  const REVIEWS_MOCKED_RESPONSE = new Array(Math.round(Math.random() * 4)).fill(null).map((_, index) => ({
+    id: index,
+    bookId,
+    text: REVIEW_TEXT_OPTIONS[Math.floor(Math.random() * REVIEW_TEXT_OPTIONS.length)],
+  }));
+
+  return new Promise(resolve => {
+    setTimeout(() => resolve(REVIEWS_MOCKED_RESPONSE), 1000);
   });
 }
