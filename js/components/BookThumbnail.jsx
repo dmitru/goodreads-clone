@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Button from './Button';
 import { BookShape } from '../shapes';
 
 const BookWrapper = styled.div`
@@ -25,11 +26,6 @@ const BookTitleLink = styled(Link)`
   &:focus {
     text-decoration: underline;
   }
-`;
-
-const Button = styled.button`
-  padding: 0.5rem;
-  background: white;
 `;
 
 const BookCover = styled.img`

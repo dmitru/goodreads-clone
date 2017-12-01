@@ -74,9 +74,9 @@ export default class App extends React.Component {
     };
   }
 
-  handleFavoriteChange(id, isFavorite) {
+  handleFavoriteChange(bookId, isFavorite) {
     const updatedBooks = this.state.books.map(book => {
-      if (book.id === id) {
+      if (book.id === bookId) {
         return Object.assign({}, book, { isFavorite });
       }
       return book;
@@ -105,7 +105,7 @@ export default class App extends React.Component {
                 if (!book) {
                   return <h1>404!</h1>;
                 }
-                return <BookDetailsPage book={book} />;
+                return <BookDetailsPage book={book} onFavoriteChange={this.handleFavoriteChange} />;
               }}
             />
           </AppContainer>
