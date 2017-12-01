@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -39,33 +40,28 @@ export default class BookThumbnail extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isFavorite: false,
-    };
-
     this.handleToggleFavorite = this.handleToggleFavorite.bind(this);
   }
 
   handleToggleFavorite() {
-    this.setState({
-      isFavorite: !this.state.isFavorite,
-    });
+    const { book } = this.props;
+    this.props.onFavoriteChange(book.id, !this.props.book.isFavorite);
   }
 
   render() {
-    const { id, title, description, cover, titleColor } = this.props.book;
+    const { id, title, description, cover, titleColor, isFavorite } = this.props.book;
 
     return (
       <BookWrapper>
         <BookCover src={cover} alt={title} />
         <BookTitleLink color={titleColor} to={`/books/${id}`}>
-          {this.state.isFavorite ? '★' : '☆'} {title}
+          {isFavorite ? '★' : '☆'} {title}
         </BookTitleLink>
         <p>{description || <em>No description :(</em>}</p>
 
         <div>
           <Button onClick={this.handleToggleFavorite}>
-            {this.state.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           </Button>
         </div>
       </BookWrapper>
@@ -75,4 +71,5 @@ export default class BookThumbnail extends React.Component {
 
 BookThumbnail.propTypes = {
   book: BookShape.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };

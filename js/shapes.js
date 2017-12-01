@@ -5,6 +5,7 @@ export const BookShape = PropTypes.shape({
   description: PropTypes.string,
   cover: PropTypes.string,
   titleColor: PropTypes.string,
+  isFavorite: PropTypes.bool,
 });
 
 export const BookListShape = PropTypes.arrayOf(BookShape);

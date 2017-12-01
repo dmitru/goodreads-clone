@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BookListShape } from '../shapes';
 
@@ -12,12 +13,17 @@ const BookListContainer = styled.div`
   justify-content: flex-start;
 `;
 
-export default function BookList({ books }) {
-  return <BookListContainer>{books.map(book => <BookThumbnail key={book.id} book={book} />)}</BookListContainer>;
+export default function BookList({ books, onFavoriteChange }) {
+  return (
+    <BookListContainer>
+      {books.map(book => <BookThumbnail key={book.id} book={book} onFavoriteChange={onFavoriteChange} />)}
+    </BookListContainer>
+  );
 }
 
 BookList.propTypes = {
   books: BookListShape,
+  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 BookList.defaultProps = {

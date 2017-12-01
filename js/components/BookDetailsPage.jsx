@@ -26,6 +26,7 @@ const BookMainContent = styled.div`
   margin-left: 1rem;
 `;
 
+// eslint-disable-next-line
 export default class BookDetailsPage extends React.Component {
   render() {
     const { title, cover, description } = this.props.book;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { BookListShape } from '../shapes';
@@ -11,12 +12,13 @@ const PageTitle = styled.h2`
   margin-top: 0;
 `;
 
+// eslint-disable-next-line
 export default class BookListPage extends React.Component {
   render() {
     return (
       <div>
         <PageTitle>Browse Books</PageTitle>
-        <BookList books={this.props.books} />
+        <BookList books={this.props.books} onFavoriteChange={this.props.onFavoriteChange} />
       </div>
     );
   }
@@ -24,4 +26,5 @@ export default class BookListPage extends React.Component {
 
 BookListPage.propTypes = {
   books: BookListShape.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };
