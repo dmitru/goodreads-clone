@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { HashRouter, Route, Link } from 'react-router-dom';
 
+import { getBooks } from '../apiClient';
+
 import BookListPage from './BookListPage';
 import BookDetailsPage from './BookDetailsPage';
 import LandingPage from './LandingPage';
@@ -29,6 +31,26 @@ const AppTitleLink = styled(Link)`
 
 const AppWrapper = styled.div``;
 
+const PreloadingWrapper = styled.div`
+  text-align: center;
+  margin-top: 200px;
+  margin-top: 40vh;
+`;
+
+const PreloadingTitle = styled.h1`
+  color: #999;
+  font-size: 2rem;
+  font-weight: normal;
+`;
+
+const PreloadingScreen = () => {
+  return (
+    <PreloadingWrapper>
+      <PreloadingTitle>Loading...</PreloadingTitle>
+    </PreloadingWrapper>
+  );
+};
+
 const AppHeader = () => {
   return (
     <AppHeaderWrapper>
@@ -43,35 +65,21 @@ export default class App extends React.Component {
     this.handleFavoriteChange = this.handleFavoriteChange.bind(this);
 
     this.state = {
-      books: [
-        {
-          id: 1,
-          title: 'Lord of the Buffer Rings',
-          description: 'A handy book indeed',
-          cover: '/public/img/book-cover-lord-of-the-rings.jpg',
-          isFavorite: false,
-        },
-        {
-          id: 2,
-          title: 'Harry Potter and the Virtual DOM',
-          cover: '/public/img/book-cover-harry-potter.jpg',
-          isFavorite: false,
-        },
-        {
-          id: 3,
-          title: '30 Days without jQuery',
-          description: 'Exactly what you need',
-          cover: '/public/img/book-cover-30-days.jpg',
-          isFavorite: false,
-        },
-        {
-          id: 4,
-          title: '7 Habits of Highly Effective Procrastinators',
-          cover: '/public/img/book-cover-7-habits.jpg',
-          isFavorite: false,
-        },
-      ],
+      books: null,
+      isLoading: true,
+      isLoadingError: null,
     };
+  }
+
+  componentDidMount() {
+    getBooks()
+      .then(books => {
+        this.setState({ books, isLoading: false });
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({ isLoading: false, isLoadingError: true });
+      });
   }
 
   handleFavoriteChange(bookId, isFavorite) {
@@ -86,6 +94,10 @@ export default class App extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <PreloadingScreen />;
+    }
+
     return (
       <HashRouter>
         <AppWrapper>
